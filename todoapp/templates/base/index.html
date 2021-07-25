@@ -1,0 +1,31 @@
+{% extends 'base/layout.html' %}
+
+{% block body %}
+<div class="container">
+    <div class="addtask">
+        <div class="center">
+            <h1>Add tasks to Todo List</h1>
+        </div>
+        <div class="add_form">
+            <div class="form-group">
+                <form action="/" method="POST">
+                    {% csrf_token %}
+                    {{ form.title }}
+                    <input class="btn btn-primary" type="submit">
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="Addform">
+        {%for task in task %}
+        <div class="tasks">
+            <p>{{ task }}</p>
+            <div class="change">
+                <a class="btn btn-danger" href="{% url 'delete' task.id %}">Delete</a>
+                <a class="btn btn-primary" href="{% url 'update' task.id %}">Update</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
